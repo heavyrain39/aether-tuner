@@ -134,35 +134,57 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const infoIcons = document.querySelectorAll('.info-icon');
+            let tooltipElement = null;
+
             infoIcons.forEach(icon => {
-                const tooltipText = icon.dataset.info;
-                if (tooltipText) {
-                    let tooltipElement = null;
-                    icon.addEventListener('mouseenter', (e) => {
-                        if (tooltipElement) tooltipElement.remove();
-                        tooltipElement = document.createElement('div');
-                        tooltipElement.className = 'info-tooltip';
-                        tooltipElement.textContent = tooltipText;
-                        document.body.appendChild(tooltipElement);
-                        const rect = icon.getBoundingClientRect();
-                        let left = rect.left + (rect.width / 2) - (tooltipElement.offsetWidth / 2) + window.scrollX;
-                        let top = rect.bottom + window.scrollY + 7;
-                        if (left < 10) left = 10;
-                        if (left + tooltipElement.offsetWidth > window.innerWidth - 10) {
-                            left = window.innerWidth - tooltipElement.offsetWidth - 10;
-                        }
-                        tooltipElement.style.left = `${left}px`;
-                        tooltipElement.style.top = `${top}px`;
-                    });
-                    icon.addEventListener('mouseleave', () => {
-                        if (tooltipElement) {
-                            tooltipElement.remove();
-                            tooltipElement = null;
-                        }
-                    });
-                }
+                icon.addEventListener('mouseenter', (e) => {
+                    if (tooltipElement) {
+                        tooltipElement.remove();
+                        tooltipElement = null;
+                    }
+
+                    const tooltipText = icon.getAttribute('data-info');
+                    if (!tooltipText) return;
+
+                    tooltipElement = document.createElement('div');
+                    tooltipElement.className = 'info-tooltip';
+                    tooltipElement.textContent = tooltipText;
+                    document.body.appendChild(tooltipElement);
+
+                    const rect = icon.getBoundingClientRect();
+                    const tooltipWidth = tooltipElement.offsetWidth;
+                    const tooltipHeight = tooltipElement.offsetHeight;
+
+                    let left = rect.left + (rect.width / 2) - (tooltipWidth / 2);
+                    let top = rect.bottom + 7; // 아이콘 바로 아래에 표시
+
+                    // 화면 가로 경계 처리
+                    if (left < 10) {
+                        left = 10;
+                    } else if (left + tooltipWidth > window.innerWidth - 10) {
+                        left = window.innerWidth - tooltipWidth - 10;
+                    }
+
+                    if (top + tooltipHeight > window.innerHeight - 10 && rect.top - tooltipHeight - 7 > 10) {
+                        top = rect.top - tooltipHeight - 7; // 아이콘 위로 표시
+                    } else if (top + tooltipHeight > window.innerHeight - 10) {
+
+                    }
+                    
+                    tooltipElement.style.position = 'fixed';
+                    tooltipElement.style.left = `${left}px`;
+                    tooltipElement.style.top = `${top}px`;
+                });
+
+                icon.addEventListener('mouseleave', () => {
+                    if (tooltipElement) {
+                        tooltipElement.remove();
+                        tooltipElement = null;
+                    }
+                });
             });
 
+            // 가이드 모달 관련 로직
             const guideLink = document.getElementById('show-guide-link');
             const guideModal = document.getElementById('guide-modal');
             const closeButton = guideModal ? guideModal.querySelector('.close-button') : null;
