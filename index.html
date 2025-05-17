@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aether Tuner</title>
+    <link rel="icon" type="image/png" href="images/ico.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+</head>
+<body data-active-theme="theme-default">
+    <div id="app-container">
+        <header class="app-header">
+            <h1>Aether Tuner</h1>
+            <p>Your Web-Based Radionics Machine</p>
+        </header>
+
+        <main class="main-content">
+            <section id="controls-panel">
+                <div class="control-group intention-group">
+                    <label for="intention-input">INTENTION</label>
+                    <textarea id="intention-input" maxlength="50" rows="3" placeholder="e.g., Prosperity, Focus, Calm..."></textarea>
+                    <button id="activate-button">Activate</button>
+                </div>
+                <hr class="section-divider">
+                <div class="control-group rate-group">
+                    <div class="label-with-info">
+                        <label>RATE</label>
+                        <span class="info-icon material-icons-outlined" data-info="Rate is a unique 9-digit code generated from your intention.">info_outline</span>
+                    </div>
+                    <div id="rate-display">
+                        <span class="rate-digit">-</span><span class="rate-digit">-</span><span class="rate-digit">-</span>
+                        <span class="rate-spacer"> </span>
+                        <span class="rate-digit">-</span><span class="rate-digit">-</span><span class="rate-digit">-</span>
+                        <span class="rate-spacer"> </span>
+                        <span class="rate-digit">-</span><span class="rate-digit">-</span><span class="rate-digit">-</span>
+                    </div>
+                </div>
+                <hr class="section-divider">
+                <div class="control-group timer-group">
+                    <div class="label-with-info">
+                        <label for="timer-input">TIMER</label>
+                        <span class="info-icon material-icons-outlined" data-info="Set duration in minutes. 0 for infinite.">info_outline</span>
+                    </div>
+                    <div class="timer-input-wrapper">
+                         <input type="number" id="timer-input" min="0" max="180" value="0" step="1">
+                         <div id="timer-display">
+                            <span id="timer-text-content">--:--</span>
+                         </div>
+                    </div>
+                </div>
+                <hr class="section-divider">
+                <div class="control-group volume-group">
+                    <label for="volume-slider">VOLUME</label>
+                    <input type="range" id="volume-slider" min="0" max="0.75" step="0.01" value="0.2">
+                </div>
+                <hr class="section-divider">
+                <div class="control-group theme-selector-group">
+                    <label>COLOR THEME</label>
+                    <div id="theme-selector-container">
+                        <div class="theme-option" data-theme="theme-default" title="Dark Mint (Default)">
+                            <span class="theme-color-preview" style="background-color: #282c34;"></span> <!-- theme-default bg -->
+                            <span class="theme-color-preview" style="background-color: #64F0C8;"></span> <!-- theme-default primary -->
+                        </div>
+                        <div class="theme-option" data-theme="theme-cosmic-indigo" title="Cosmic Indigo">
+                            <span class="theme-color-preview" style="background-color: #1A182F;"></span>
+                            <span class="theme-color-preview" style="background-color: #F0C419;"></span>
+                        </div>
+                        <div class="theme-option" data-theme="theme-aetherial-light" title="Aetherial Light">
+                            <span class="theme-color-preview" style="background-color: #F8F9FA;"></span>
+                            <span class="theme-color-preview" style="background-color: #A0D2DB;"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="how-to-use-link">
+                    <a href="#" id="show-guide-link">※ How to use Aether Tuner</a>
+                </div>
+            </section>
+
+            <section id="visualizer-panel">
+                 <div id="mandala-container">
+                 </div>
+                 <div id="bottom-visualizers">
+                    <div id="equalizer-container">
+                        <div id="equalizer">
+                            <div class="slider-wrapper"><div class="slider-track"><div class="slider-thumb"></div></div><input type="range" class="horizontal-slider" min="0" max="9" step="1" value="5" disabled><span class="eq-digit-display">-</span></div>
+                            <div class="slider-wrapper"><div class="slider-track"><div class="slider-thumb"></div></div><input type="range" class="horizontal-slider" min="0" max="9" step="1" value="5" disabled><span class="eq-digit-display">-</span></div>
+                            <div class="slider-wrapper"><div class="slider-track"><div class="slider-thumb"></div></div><input type="range" class="horizontal-slider" min="0" max="9" step="1" value="5" disabled><span class="eq-digit-display">-</span></div>
+                            <div class="slider-wrapper"><div class="slider-track"><div class="slider-thumb"></div></div><input type="range" class="horizontal-slider" min="0" max="9" step="1" value="5" disabled><span class="eq-digit-display">-</span></div>
+                            <div class="slider-wrapper"><div class="slider-track"><div class="slider-thumb"></div></div><input type="range" class="horizontal-slider" min="0" max="9" step="1" value="5" disabled><span class="eq-digit-display">-</span></div>
+                            <div class="slider-wrapper"><div class="slider-track"><div class="slider-thumb"></div></div><input type="range" class="horizontal-slider" min="0" max="9" step="1" value="5" disabled><span class="eq-digit-display">-</span></div>
+                            <div class="slider-wrapper"><div class="slider-track"><div class="slider-thumb"></div></div><input type="range" class="horizontal-slider" min="0" max="9" step="1" value="5" disabled><span class="eq-digit-display">-</span></div>
+                            <div class="slider-wrapper"><div class="slider-track"><div class="slider-thumb"></div></div><input type="range" class="horizontal-slider" min="0" max="9" step="1" value="5" disabled><span class="eq-digit-display">-</span></div>
+                            <div class="slider-wrapper"><div class="slider-track"><div class="slider-thumb"></div></div><input type="range" class="horizontal-slider" min="0" max="9" step="1" value="5" disabled><span class="eq-digit-display">-</span></div>
+                        </div>
+                    </div>
+                    <div id="waveform-container">
+                        <canvas id="main-waveform-canvas"></canvas>
+                    </div>
+                 </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>© 2025 Aether Tuner - A <a href="https://heavyrain39.github.io/portfolio/" target="_blank" rel="noopener noreferrer">Yakshawan</a> Project</p>
+        </footer>
+    </div>
+
+    <div id="guide-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <h2>Aether Tuner Guide</h2>
+            <hr class="modal-divider">
+            <p>Aether Tuner is an interactive, free Radionics machine that transforms your intention into a unique 9-digit "Rate." This Rate is then expressed through modulated brown noise and visual patterns, based on numerological principles.</p>
+            <p><strong>What is it for?</strong></p>
+            <ul>
+                <li><strong>Enhancing Focus:</strong> Aether Tuner can aid concentration by providing Rate-based brown noise, subtly complemented by 8Hz binaural beats, ideal for work or study.</li>
+                <li><strong>Broadcasting Your Intention:</strong> Practitioners of Radionics believe that a Rate generated from an intention can activate and broadcast specific energy patterns, potentially influencing the world's information field. Experiment by generating Rates for keywords you resonate with, such as prosperity, peace, or love.</li>
+                <li><strong>Meditation & Relaxation:</strong> The combination of 8Hz binaural beats and brown noise can help create a state conducive to creative focus or peaceful meditation. Using Aether Tuner as a meditation aid is a great way to explore its effects.</li>
+            </ul>
+            <p><strong>How to Use</strong></p>
+            <ol>
+                <li>In the INTENTION area, freely write your wishes, goals, or any concept you wish to explore.</li>
+                <li>Press the "Activate" button. Aether Tuner will generate a unique Rate number, and corresponding sounds and visual patterns will be created.</li>
+                <li>Optionally, set the TIMER in minutes for focused work or meditation sessions. Setting it to 0 enables continuous operation (infinite mode).</li>
+                <li>To stop Aether Tuner, simply press the "Deactivate" button.</li>
+            </ol>
+            <p><strong>TIP:</strong></p>
+            <p>Aether Tuner is a tool for personal exploration and discovery; there's no single "right" way to use it. Feel free to experiment with various intentions and experience the unique interplay of patterns and sounds that emerge.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const infoIcons = document.querySelectorAll('.info-icon');
+            infoIcons.forEach(icon => {
+                const tooltipText = icon.dataset.info;
+                if (tooltipText) {
+                    let tooltipElement = null;
+                    icon.addEventListener('mouseenter', (e) => {
+                        if (tooltipElement) tooltipElement.remove();
+                        tooltipElement = document.createElement('div');
+                        tooltipElement.className = 'info-tooltip';
+                        tooltipElement.textContent = tooltipText;
+                        document.body.appendChild(tooltipElement);
+                        const rect = icon.getBoundingClientRect();
+                        let left = rect.left + (rect.width / 2) - (tooltipElement.offsetWidth / 2) + window.scrollX;
+                        let top = rect.bottom + window.scrollY + 7;
+                        if (left < 10) left = 10;
+                        if (left + tooltipElement.offsetWidth > window.innerWidth - 10) {
+                            left = window.innerWidth - tooltipElement.offsetWidth - 10;
+                        }
+                        tooltipElement.style.left = `${left}px`;
+                        tooltipElement.style.top = `${top}px`;
+                    });
+                    icon.addEventListener('mouseleave', () => {
+                        if (tooltipElement) {
+                            tooltipElement.remove();
+                            tooltipElement = null;
+                        }
+                    });
+                }
+            });
+
+            const guideLink = document.getElementById('show-guide-link');
+            const guideModal = document.getElementById('guide-modal');
+            const closeButton = guideModal ? guideModal.querySelector('.close-button') : null;
+
+            if (guideLink && guideModal && closeButton) {
+                guideLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    guideModal.style.display = "flex";
+                });
+                closeButton.addEventListener('click', () => {
+                    guideModal.style.display = "none";
+                });
+                window.addEventListener('click', (event) => {
+                    if (event.target === guideModal) {
+                        guideModal.style.display = "none";
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script src="three.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="binauralBeats.js"></script>
+</body>
+</html>
